@@ -13,11 +13,13 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
+// Creates a Pila aequor organism object 
 const pAequorFactory = (specimenNum, dna) => {
   return { 
     specimenNum,
     dna,
 
+    // Alters a random base from the organisms DNA to another value
     mutate() { 
       let baseIndex = Math.floor(Math.random() * 15);
       let mutation;
@@ -33,6 +35,7 @@ const pAequorFactory = (specimenNum, dna) => {
       } while (!mutated);
     },
 
+    // Compares two organisms and logs the percentage of DNA that they have in common 
     compareDNA(pAequor) { 
       let inCommon = 0;
 
@@ -46,6 +49,7 @@ const pAequorFactory = (specimenNum, dna) => {
       console.log(`Specimen ${this.specimenNum} and specimen ${pAequor.specimenNum} have ${percentage} DNA in common`);
     },
 
+    // Returns true if the organism is likely to survive based on the number of 'C' and 'G' bases in its DNA
     willLikelySurvive() { 
       let survivalBases = 0;
 
@@ -57,7 +61,7 @@ const pAequorFactory = (specimenNum, dna) => {
 
       likeliness = survivalBases / 15 * 100;
 
-      if(likeliness > 60) { 
+      if(likeliness >= 60) { 
         return true;
       }
       else { 
@@ -68,7 +72,18 @@ const pAequorFactory = (specimenNum, dna) => {
   }
 }
 
-// Testing 
-organism1 = pAequorFactory(1, mockUpStrand());
-console.log(organism1.willLikelySurvive());
+// Create and store 30 Pila aequor organisms that are likely to survive
+let organisms = [] 
+let counter = 1;
 
+while (organisms.length < 30) { 
+  let organism = pAequorFactory(counter, mockUpStrand());
+
+  if(organism.willLikelySurvive()){ 
+    organisms.push(organism);
+    counter++;
+  }
+}
+
+// View the stored organisms in the console.
+console.log(organisms);
