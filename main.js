@@ -13,10 +13,16 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
+const pAequorFactory = (specimenNum, dna) => {
+  return { 
+    _specimenNum: specimenNum,
+    _dna: dna
+  }
+}
 
 
-
-
+const strand = pAequorFactory(1, mockUpStrand());
+console.log(strand._specimenNum);
 
 
 
