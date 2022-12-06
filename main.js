@@ -15,14 +15,29 @@ const mockUpStrand = () => {
 
 const pAequorFactory = (specimenNum, dna) => {
   return { 
-    _specimenNum: specimenNum,
-    _dna: dna
+    specimenNum,
+    dna,
+
+    mutate() { 
+      let baseIndex = Math.floor(Math.random() * 15);
+      let mutation;
+      let mutated = false;
+      do {
+        mutation = returnRandBase();
+
+        if (dna[baseIndex] != mutation) { 
+          dna[baseIndex] = mutation;
+          mutated = true;
+        }
+
+      } while (!mutated);
+    }
+
   }
 }
 
-
-const strand = pAequorFactory(1, mockUpStrand());
-console.log(strand._specimenNum);
-
-
-
+// Testing 
+organism = pAequorFactory(1, mockUpStrand());
+console.log(organism.dna);
+organism.mutate();
+console.log(organism.dna);
