@@ -31,13 +31,27 @@ const pAequorFactory = (specimenNum, dna) => {
         }
 
       } while (!mutated);
+    },
+
+    compareDNA(pAequor) { 
+      let inCommon = 0;
+
+      for(let i = 0; i < this.dna.length; i++) { 
+        if (this.dna[i] === pAequor.dna[i]) { 
+          inCommon++;
+        }
+      }
+
+      let percentage = inCommon / 15 * 100;
+      console.log(`Specimen ${this.specimenNum} and specimen ${pAequor.specimenNum} have ${percentage} DNA in common`);
     }
 
   }
 }
 
 // Testing 
-organism = pAequorFactory(1, mockUpStrand());
-console.log(organism.dna);
-organism.mutate();
-console.log(organism.dna);
+organism1 = pAequorFactory(1, mockUpStrand());
+organism2 = pAequorFactory(2, mockUpStrand());
+
+organism1.compareDNA(organism2);
+
