@@ -62,6 +62,32 @@ const pAequorFactory = (specimenNum, dna) => {
       else { 
         return false;
       }
+    },
+
+    // Returns a new array that contains the complement of the strand. A and T bases bind together and C and G bind. 
+    complementStrand() { 
+      complement = [];
+
+      this.dna.forEach(base => { 
+        switch(base){
+          case 'A':
+            complement.push('T');
+            break;
+          case 'T':
+            complement.push('A');
+            break;
+          case 'C':
+            complement.push('G');
+            break;
+          case 'G':
+            complement.push('C');
+            break; 
+        }
+      });
+      // Testing string
+      // console.log(`number: ${this.specimenNum} dna: ${this.dna}\nnumber: ${this.specimenNum} com: ${complement}`)
+
+      return complement;
     }
 
   }
