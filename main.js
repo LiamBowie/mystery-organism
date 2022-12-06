@@ -44,6 +44,25 @@ const pAequorFactory = (specimenNum, dna) => {
 
       let percentage = inCommon / 15 * 100;
       console.log(`Specimen ${this.specimenNum} and specimen ${pAequor.specimenNum} have ${percentage} DNA in common`);
+    },
+
+    willLikelySurvive() { 
+      let survivalBases = 0;
+
+      this.dna.forEach(base => {
+        if(base === 'C' || base === 'G') { 
+          survivalBases++;
+        }
+      });
+
+      likeliness = survivalBases / 15 * 100;
+
+      if(likeliness > 60) { 
+        return true;
+      }
+      else { 
+        return false;
+      }
     }
 
   }
@@ -51,7 +70,5 @@ const pAequorFactory = (specimenNum, dna) => {
 
 // Testing 
 organism1 = pAequorFactory(1, mockUpStrand());
-organism2 = pAequorFactory(2, mockUpStrand());
-
-organism1.compareDNA(organism2);
+console.log(organism1.willLikelySurvive());
 
