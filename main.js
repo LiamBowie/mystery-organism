@@ -22,17 +22,12 @@ const pAequorFactory = (specimenNum, dna) => {
     // Alters a random base from the organisms DNA to another value
     mutate() { 
       let baseIndex = Math.floor(Math.random() * 15);
-      let mutation;
-      let mutated = false;
-      do {
+      let mutation = returnRandBase();
+      
+      while (this.dna[baseIndex] === mutation) {
         mutation = returnRandBase();
-
-        if (dna[baseIndex] != mutation) { 
-          dna[baseIndex] = mutation;
-          mutated = true;
-        }
-
-      } while (!mutated);
+      }
+      dna[baseIndex] = mutation;
     },
 
     // Compares two organisms and logs the percentage of DNA that they have in common 
